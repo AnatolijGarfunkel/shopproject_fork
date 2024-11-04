@@ -11,12 +11,18 @@ import java.util.List;
 public class ProductInMemoryRepository implements ProductRepository {
 
     private List<Product> storage = Arrays.asList(
-      new Product("Apple", ProductType.FRUIT),
-      new Product("Cucumber",ProductType.VEGETABLE)
+            new Product("Apple", ProductType.FRUIT),
+            new Product("Cucumber", ProductType.VEGETABLE),
+            new Product("Pineapple", ProductType.FRUIT)
     );
 
     @Override
     public List<Product> getAll() {
         return storage;
+    }
+
+    @Override
+    public Product getByTitle(String title) {
+        return null;
     }
 }

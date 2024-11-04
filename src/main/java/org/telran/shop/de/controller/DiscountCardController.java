@@ -2,9 +2,11 @@ package org.telran.shop.de.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.telran.shop.de.configuraton.DataBaseManager;
 import org.telran.shop.de.model.DiscountCard;
 import org.telran.shop.de.service.DiscountCardService;
 
+import java.sql.Connection;
 import java.util.List;
 
 //HTTP
@@ -36,7 +38,7 @@ import java.util.List;
 
 // expire  http://localhost:8080/api/discountcards/expire/4356
 
-@RestController
+@RestController   // @Controller + @ResponseBody
 @RequestMapping("/api/discountcards")
 public class DiscountCardController {
 
@@ -52,10 +54,14 @@ public class DiscountCardController {
     @Autowired
     private DiscountCardService cardService;
 
+    @Autowired
+    private DataBaseManager dataBaseManager;
+
     //GET http://localhost:8080/api/discountcards
     @GetMapping  // DispatcherServlet - в этот метод передаст GET запрос
     // по адресу этого контроллера
     public List<DiscountCard> getAll() {
+        Connection connection = dataBaseManager.getConnection();
         return cardService.getAll();
     }
 
@@ -66,6 +72,7 @@ public class DiscountCardController {
     }
 
     //http://localhost:8080/api/discountcards/5674
+    //Параметры адресной строки доступны всем!!! Не нужно передавать логины и пароли тут
     //@PathVariable - взятие параметра из адресной строки
     @GetMapping("/{id}")
     public DiscountCard getById(@PathVariable(name = "id") String id) {
