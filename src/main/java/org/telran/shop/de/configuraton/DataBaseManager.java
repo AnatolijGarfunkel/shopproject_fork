@@ -10,13 +10,13 @@ import java.sql.DriverManager;
 @Component
 public class DataBaseManager {
 
-    @Value("${database.url}")
+    @Value("${database.url:}")
     private String dataBaseUrl;
-    @Value("${database.name}")
+    @Value("${database.name:}")
     private String dataBaseName;
-    @Value("${database.user}")
+    @Value("${database.user:}")
     private String userName;
-    @Value("${database.password}")
+    @Value("${database.password:}")
     private String password;
 
     private Connection connection;

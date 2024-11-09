@@ -1,6 +1,7 @@
 package org.telran.shop.de.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.telran.shop.de.model.DiscountCard;
 import org.telran.shop.de.repository.DiscountCardRepository;
@@ -11,7 +12,12 @@ import java.util.List;
 public class DiscountCardServiceImpl implements DiscountCardService {
 
     @Autowired
+    @Qualifier("dcrepository")
     private DiscountCardRepository repository;
+
+//    @Autowired
+//    @Qualifier("discountCardInMemoryRepository")
+//    private DiscountCardRepository iMrepository;
 
     @Override
     public List<DiscountCard> getAll() {

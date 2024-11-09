@@ -61,7 +61,7 @@ public class DiscountCardController {
     @GetMapping  // DispatcherServlet - в этот метод передаст GET запрос
     // по адресу этого контроллера
     public List<DiscountCard> getAll() {
-        Connection connection = dataBaseManager.getConnection();
+        //Connection connection = dataBaseManager.getConnection();
         return cardService.getAll();
     }
 
