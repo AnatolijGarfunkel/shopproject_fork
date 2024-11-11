@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+@Deprecated
 public class JdbcExampleApp {
 
     public static void main(String[] args) {

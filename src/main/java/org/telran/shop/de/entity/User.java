@@ -9,6 +9,9 @@ package org.telran.shop.de.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity // Объекты данного класса будут сохраняться в бд
 @Table(name = "shop_users") // указываем имя таблицы для сохранения объектов
 public class User {
@@ -28,6 +31,15 @@ public class User {
 
     @Column(name = "description") // явное задание колонки для маппинга
     private String information;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id") // вот эта колонка будет создана в таблице адресов
+    private List<Address> addresses = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id", referencedColumnName = "id") // вот эта колонка будет
+    // создана в таблице пользователя
+    private Passport passport;
 
     public User() {
         //
@@ -79,5 +91,21 @@ public class User {
 
     public void setInformation(String information) {
         this.information = information;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
     }
 }

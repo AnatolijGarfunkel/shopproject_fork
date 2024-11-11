@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 @Component
+@Deprecated
 public class DataBaseManager {
 
     @Value("${database.url:}")

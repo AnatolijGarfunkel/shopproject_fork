@@ -16,6 +16,7 @@ import java.util.List;
 
 @Component
 @Primary
+@Deprecated
 public class ProductJDBCRepository implements ProductRepository {
 
     @Autowired

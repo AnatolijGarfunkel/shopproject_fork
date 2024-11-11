@@ -53,9 +53,9 @@ public class DiscountCardController {
 
     @Autowired
     private DiscountCardService cardService;
-
-    @Autowired
-    private DataBaseManager dataBaseManager;
+//
+//    @Autowired
+//    private DataBaseManager dataBaseManager;
 
     //GET http://localhost:8080/api/discountcards
     @GetMapping  // DispatcherServlet - в этот метод передаст GET запрос

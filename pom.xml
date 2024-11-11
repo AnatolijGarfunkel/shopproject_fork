@@ -44,6 +44,7 @@
             <version>8.0.32</version>
         </dependency>
 
+        <!-- для работы с субд H2    -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
+@Deprecated
 public class ProductInMemoryRepository implements ProductRepository {
 
     private List<Product> storage = Arrays.asList(

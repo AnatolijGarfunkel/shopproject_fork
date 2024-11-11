@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Component
+@Deprecated
 public class DiscountCardInMemoryRepository implements DiscountCardRepository {
 
     private Map<String, DiscountCard> storage = new HashMap<>();

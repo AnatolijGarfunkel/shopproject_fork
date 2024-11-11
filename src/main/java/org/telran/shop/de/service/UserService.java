@@ -11,4 +11,11 @@ public interface UserService {
     User getById(Long id);
 
     User create(User user);
+
+    User getByName(String name);
+
+    List<User> getWithEqualsPasswords(String password);
+
+    void delete(Long id);
+
 }

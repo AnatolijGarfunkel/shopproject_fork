@@ -9,6 +9,7 @@ import org.telran.shop.de.model.DiscountCard;
 import java.util.List;
 
 @Repository("dcrepository")
+@Deprecated
 public class DiscountCardJDBCRepository implements DiscountCardRepository {
 
     @Autowired
