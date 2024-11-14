@@ -3,32 +3,31 @@ package org.telran.shop.de.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "passports")
+@Table(name = "passport")
 public class Passport {
 
-    @Id // данное поле является первичным ключом
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // авто увеличение поля
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    private String number;
+    private String nummber;
 
     public Passport() {
-        //
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getNumber() {
-        return number;
+    public String getNummber() {
+        return nummber;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNummber(String nummber) {
+        this.nummber = nummber;
     }
 }

@@ -1,55 +1,63 @@
 package org.telran.shop.de.entity;
 
-//JPA - standard
-//Hibernate - ORM framework, который реализует стандарт JPA
-//ORM - Object Relational Mapping, технология, которая позволяет
-//маппить джава классы в таблицы базы данных, поля классов в колонки бд
-//и наоборот
-//Spring Data JPA - набор интерфейсов для доступа к базе данных
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // Объекты данного класса будут сохраняться в бд
-@Table(name = "shop_users") // указываем имя таблицы для сохранения объектов
+@Entity
+@Table(name = "shop_users")
 public class User {
 
-    @Id // данное поле является первичным ключом
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // авто увеличение поля
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @Column(name = "login") // нет необходимости здесь
     private String login;
 
     private String password;
 
     private String email;
 
-    private String userInfo;  // user_info
+    private String userInfo;
 
-    @Column(name = "description") // явное задание колонки для маппинга
+    @Column(name = "description")
     private String information;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id") // вот эта колонка будет создана в таблице адресов
-    private List<Address> addresses = new ArrayList<>();
+    @JoinColumn(name = "user_id")
+    private List<Adress> adresses = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passport_id", referencedColumnName = "id") // вот эта колонка будет
-    // создана в таблице пользователя
+    @JoinColumn(name = "passport_id", referencedColumnName = "id")
     private Passport passport;
 
     public User() {
         //
     }
 
-    public Long getId() {
+    public List<Adress> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<Adress> adresses) {
+        this.adresses = adresses;
+    }
+
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -91,21 +99,5 @@ public class User {
 
     public void setInformation(String information) {
         this.information = information;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
-
-    public Passport getPassport() {
-        return passport;
-    }
-
-    public void setPassport(Passport passport) {
-        this.passport = passport;
     }
 }

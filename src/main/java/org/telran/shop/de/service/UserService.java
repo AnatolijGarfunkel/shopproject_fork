@@ -6,16 +6,22 @@ import java.util.List;
 
 public interface UserService {
 
-    List<User> getAll();
+    List<User> getAll ();
 
-    User getById(Long id);
+    User getById(long id);
+
+    User getByName(String login);
+
+    List<User> getByFullAdress(String fullAddress);
 
     User create(User user);
 
-    User getByName(String name);
+    User update(long id, User user);
 
-    List<User> getWithEqualsPasswords(String password);
+    User updateAdress(long id, User user);
 
-    void delete(Long id);
+    User delete(long id);
+
+    List<User> getWithEqualsPassword(String password);
 
 }

@@ -7,42 +7,64 @@ import org.telran.shop.de.service.UserService;
 
 import java.util.List;
 
-// http://localhost:8080
-
 @RestController
-@RequestMapping("/api/users") // http://localhost:8080/api/users
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+
+// GET -----------------------------------------------------------------------------------------------------------------
+
     @GetMapping
-    public List<User> getAll() {
+    public List<User> getAll () {
         return userService.getAll();
     }
+
+    @GetMapping("/{id}")
+    public User getById(@PathVariable long id) {
+        return userService.getById(id);
+    }
+
+    @GetMapping("/login")
+    public User getByName (@RequestParam String login) {
+        return userService.getByName(login);
+    }
+
+    @GetMapping("/fulladress")
+    public List<User> getByFullAddress(@RequestParam String fullAddress) {
+        return userService.getByFullAdress(fullAddress);
+    }
+
+// POST ----------------------------------------------------------------------------------------------------------------
 
     @PostMapping
     public User create(@RequestBody User user) {
         return userService.create(user);
     }
 
-    @GetMapping("/{id}")
-    public User getById(@PathVariable Long id) {
-        return userService.getById(id);
+    @PutMapping("/{id}")
+    public User update(@PathVariable long id, @RequestBody User user) {
+        return userService.update(id, user);
     }
 
-    @GetMapping("/search")
-    public User getByName(@RequestParam(name = "name") String name) {
-        return userService.getByName(name);
+    @PutMapping("/adress/{id}")
+    public User updateAdress(@PathVariable long id, @RequestBody User user) {
+        return userService.updateAdress(id, user);
     }
 
-    @PostMapping("/equals_passwords")
+
+    @PostMapping("/equals_password")
     public List<User> getWithEqualsPassword(@RequestBody String password) {
-        return userService.getWithEqualsPasswords(password);
-    }
+        return userService.getWithEqualsPassword(password);
+    };
+
+// DELETE --------------------------------------------------------------------------------------------------------------
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        userService.delete(id);
+    public User delete(@PathVariable long id) {
+        return userService.delete(id);
     }
+
 }
