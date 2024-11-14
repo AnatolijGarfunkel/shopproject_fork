@@ -3,7 +3,7 @@ package org.telran.shop.de.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telran.shop.de.entity.DiscountCard;
-import org.telran.shop.de.repository.DiscountCardRepository;
+import org.telran.shop.de.repository.DiscountCardJpaRepository;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class DiscountCardServiceImpl implements DiscountCardService {
 
     @Autowired
-    private DiscountCardRepository repository;
+    private DiscountCardJpaRepository repository;
 
 
 // GET -----------------------------------------------------------------------------------------------------------------
@@ -22,13 +22,13 @@ public class DiscountCardServiceImpl implements DiscountCardService {
     }
 
     @Override
-    public DiscountCard getById(long id) {
+    public DiscountCard getById(String id) {
         return repository.findById(id).orElse(null);
     }
 
     @Override
     public List<DiscountCard> filter(boolean expired) {
-        return repository.findAllByExpired(expired);
+        return repository.findDiscountCardsByExpired(expired);
     }
 
 // POST ----------------------------------------------------------------------------------------------------------------
@@ -39,20 +39,17 @@ public class DiscountCardServiceImpl implements DiscountCardService {
     }
 
     @Override
-    public DiscountCard setExpired(long id) {
-//        DiscountCard card = new DiscountCard();
-//        card.setId(id);
-//        card.setExpired(true);
-//        repository.save(card);
-        repository.updateDiscountCardById(id);
-        DiscountCard tempCard = getById(id);
-        return tempCard;
+    public DiscountCard setExpired(String id) {
+        DiscountCard card = getById(id);
+        card.setExpired(true);
+        repository.save(card);
+        return card;
     }
 
 // DELETE --------------------------------------------------------------------------------------------------------------
 
     @Override
-    public void deleteById(long id) {
+    public void deleteById(String id) {
         repository.deleteById(id);
     }
 
